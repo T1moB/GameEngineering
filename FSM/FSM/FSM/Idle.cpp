@@ -6,10 +6,10 @@
 #include <SDL_image.h>
 #include "Attack.h"
 #include "Jumping.h"
+#include "Shielding.h"
 
 using namespace std;
 
-SDL_Window* window /*= SDL_CreateWindow("FSM", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 500, 500, SDL_WINDOW_OPENGL)*/;
 SDL_Renderer* renderer /*= SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)*/;
 
 #define frames 10
@@ -20,8 +20,6 @@ Idle::Idle(SDL_Renderer* r)
 {
 	renderer = r;
 	IMG_Init(IMG_INIT_PNG); 
-	for (int i = 0; i < 4; i++)
-	{
 		for (int i = 0; i < frames; i++)
 		{
 			int count = i;
@@ -39,14 +37,14 @@ Idle::Idle(SDL_Renderer* r)
 			textures[i] = tex;
 			//textures.insert(tex, textures.end());
 		}
+
 		for (int i = 0; i < frames; i++)
 		{
 			SDL_RenderClear(r);
 			SDL_RenderCopy(r, textures[i], NULL, NULL);
 			SDL_RenderPresent(r);
-			if (i == frames) { i = -1; }
+			//if (i == frames-1) { i = -1; }
 		}
-	}
 	//Do animation
 }
 
@@ -69,3 +67,10 @@ void Idle::attack(Animation* a) {
 	a->SetCurrent(new Idle(renderer));
 	delete(this);
 }
+void Idle::shielding(Animation* a) {
+	cout << "shield" << endl;
+	Shielding* shield = new Shielding(renderer);
+	a->SetCurrent(new Idle(renderer));
+	delete(this);
+}
+

@@ -11,5 +11,6 @@ public:
 	~Idle();
 	void jumping(Animation* a);
 	void attack(Animation* a);
+	void shielding(Animation* a);
 };
 

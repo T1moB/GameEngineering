@@ -7,13 +7,15 @@
 
 Animation::Animation()
 {
-	SDL_Window* window = SDL_CreateWindow("FSM", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 500, 500, SDL_WINDOW_OPENGL);
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	current = new Idle(renderer);
 }
 
 Animation::~Animation()
 {
+}
+
+void Animation::Init(SDL_Renderer* renderer) {
+
+	current = new Idle(renderer);
 }
 
 void Animation::idle() {
@@ -26,4 +28,8 @@ void Animation::jumping() {
 
 void Animation::attack() {
 	current->attack(this);
+}
+
+void Animation::shielding() {
+	current->shielding(this);
 }

@@ -6,17 +6,14 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <vector>
 
 SDL_Renderer* jR;
 #define frames 9
 SDL_Surface* jSurface;
-SDL_Texture* jTextures[frames];
 
 Jumping::Jumping(SDL_Renderer* r)
 {
-	for (int i = 0; i < 4; i++)
-	{
+	SDL_Texture* jTextures[frames];
 		for (int i = 0; i < frames; i++)
 		{
 			int count = i;
@@ -35,14 +32,16 @@ Jumping::Jumping(SDL_Renderer* r)
 			jR = r;
 			//textures.insert(tex, textures.end());
 		}
-		for (int i = 0; i < frames; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			SDL_RenderClear(r);
-			SDL_RenderCopy(r, jTextures[i], NULL, NULL);
-			SDL_RenderPresent(r);
-			if (i == frames) { i = -1; }
+			for (int i = 0; i < frames; i++)
+			{
+				SDL_RenderClear(r);
+				SDL_RenderCopy(r, jTextures[i], NULL, NULL);
+				SDL_RenderPresent(r);
+				if (i == frames) { i = -1; }
+			}
 		}
-	}
 	//do animation
 }
 

@@ -2,17 +2,17 @@
 #include "Attack.h"
 #include "Animation.h"
 #include "Idle.h"
+#include <SDL.h>
+#include <SDL_image.h>
 #include <iostream>
 
 SDL_Renderer* _r;
 #define frames 10
 SDL_Surface* _surface;
-SDL_Texture* _textures[frames];
 
 Attack::Attack(SDL_Renderer* r)
 {
-	for (int i = 0; i < 4; i++)
-	{
+	SDL_Texture* _textures[frames];
 		for (int i = 0; i < frames; i++)
 		{
 			int count = i;
@@ -31,14 +31,16 @@ Attack::Attack(SDL_Renderer* r)
 			_r = r;
 			//textures.insert(tex, textures.end());
 		}
-		for (int i = 0; i < frames; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			SDL_RenderClear(r);
-			SDL_RenderCopy(r, _textures[i], NULL, NULL);
-			SDL_RenderPresent(r);
-			if (i == frames) { i = -1; }
+			for (int i = 0; i < frames; i++)
+			{
+				SDL_RenderClear(r);
+				SDL_RenderCopy(r, _textures[i], NULL, NULL);
+				SDL_RenderPresent(r);
+				if (i == frames) { i = -1; }
+			}
 		}
-	}
 	//do animation
 }
 
