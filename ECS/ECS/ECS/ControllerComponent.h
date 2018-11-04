@@ -4,7 +4,7 @@
 class ControllerComponent : public Component
 {
 public:
-	ControllerComponent() : left('A'), right('D'), up('W'), down('S') {}
+	ControllerComponent() { left = 'A'; right = 'D'; up = 'W'; down = 'S'; }
 	void SetLeft(int newKey) { left = newKey; }
 	void SetRight(int newKey) { right = newKey; }
 	void SetUp(int newKey) { up = newKey; }
@@ -13,6 +13,8 @@ public:
 	int GetRight() { return right; }
 	int GetUp() { return up; }
 	int GetDown() { return down; }
+	int GetIndex() { return 2; }
+	Type GetType() { return Type::Controller; }
 	~ControllerComponent();
 
 private:

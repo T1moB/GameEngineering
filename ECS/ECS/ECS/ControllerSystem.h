@@ -1,13 +1,10 @@
 #pragma once
-#include "System.h"
 #include "Entity.h"
-#include <vector>
-
-class HealthSystem
+class ControllerSystem
 {
 public:
-	HealthSystem();
-	~HealthSystem();
+	ControllerSystem();
+	~ControllerSystem();
 	void AddEntity(Entity e) { entities.push_back(e); }
 	void Update();
 private:
