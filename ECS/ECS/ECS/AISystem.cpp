@@ -29,5 +29,5 @@ void AISystem::Update() {
 	if (dogPosition->GetXPosition() > 450 || dogPosition->GetXPosition() < 0) { dogSpeed = -dogSpeed; }
 
 	catPosition->Translate(0, catSpeed);
-	if (catPosition->GetYPosition() > 450 || catPosition->GetYPosition() < 0) { catSpeed = catSpeed; }
+	if (catPosition->GetYPosition() > 450 || catPosition->GetYPosition() < 0) { catSpeed = -catSpeed; }
 }

@@ -3,14 +3,12 @@
 #include "Entity.h"
 #include <vector>
 
-class HealthSystem
+class HealthSystem : public System
 {
 public:
 	HealthSystem();
 	~HealthSystem();
-	void AddEntity(Entity e) { entities.push_back(e); }
 	void Update();
 private:
-	std::vector<Entity> entities;
 };
 

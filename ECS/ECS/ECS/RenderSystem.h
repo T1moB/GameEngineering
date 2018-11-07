@@ -5,15 +5,13 @@
 #include "SDL_Image.h"
 #include <vector>
 
-class RenderSystem
+class RenderSystem : public System
 {
 public:
 	RenderSystem(SDL_Renderer* r);
 	~RenderSystem();
-	void AddEntity(Entity e) { entities.push_back(e); }
 	void Update();
 private:
-	std::vector<Entity> entities;
 	SDL_Renderer* rRenderer;
 	SDL_Texture* player;
 	SDL_Texture* alien;
