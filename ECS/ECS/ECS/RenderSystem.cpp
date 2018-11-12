@@ -1,5 +1,6 @@
 #include "RenderSystem.h"
 #include "PositionComponent.h"
+#include "RenderComponent.h"
 #include "RenderSystem.h"
 #include "SDL.h"
 #include <iostream>
@@ -34,23 +35,15 @@ void RenderSystem::Update() {
 	SDL_RenderClear(rRenderer);
 
 	SDL_Rect* texPos = new SDL_Rect();
+	SDL_Texture* tex;
 	texPos->h = 64;
 	texPos->w = 64;
-	texPos->x = entities[0].getComponent<PositionComponent>(Component::Type::Position)->GetXPosition();
-	texPos->y = entities[0].getComponent<PositionComponent>(Component::Type::Position)->GetYPosition();
-	SDL_RenderCopy(rRenderer, player, NULL, texPos);
-
-	texPos->x = entities[1].getComponent<PositionComponent>(Component::Type::Position)->GetXPosition();
-	texPos->y = entities[1].getComponent<PositionComponent>(Component::Type::Position)->GetYPosition();
-	SDL_RenderCopy(rRenderer, alien, NULL, texPos);
-
-	texPos->x = entities[2].getComponent<PositionComponent>(Component::Type::Position)->GetXPosition();
-	texPos->y = entities[2].getComponent<PositionComponent>(Component::Type::Position)->GetYPosition();
-	SDL_RenderCopy(rRenderer, dog, NULL, texPos);
-
-	texPos->x = entities[3].getComponent<PositionComponent>(Component::Type::Position)->GetXPosition();
-	texPos->y = entities[3].getComponent<PositionComponent>(Component::Type::Position)->GetYPosition();
-	SDL_RenderCopy(rRenderer, cat, NULL, texPos);
-
+	for (int i = 0; i < entities.size(); i++)
+	{
+		texPos->x = entities[i].getComponent<PositionComponent>(Component::Type::Position)->GetXPosition();
+		texPos->y = entities[i].getComponent<PositionComponent>(Component::Type::Position)->GetYPosition();
+		tex = entities[i].getComponent<RenderComponent>(Component::Type::Render)->GetTexture();
+		SDL_RenderCopy(rRenderer, tex, NULL, texPos);
+	}
 	SDL_RenderPresent(rRenderer);
 }

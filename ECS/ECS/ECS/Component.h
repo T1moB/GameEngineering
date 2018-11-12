@@ -9,6 +9,7 @@ public:
 		Health = 0,
 		Position = 1,
 		Controller = 2,
+		Render = 3,
 	};
 	virtual Type GetType() = 0;
 	virtual  int GetIndex() = 0;
