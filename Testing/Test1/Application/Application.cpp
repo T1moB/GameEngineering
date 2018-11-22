@@ -23,6 +23,7 @@ std::vector<int> Application::AskInput(int amount) {
 	std::vector<int> v((std::istream_iterator<int>(is)), std::istream_iterator<int>());
 	for (int x : v) std::cout << x << ' ';
 	std::cout << std::endl;
-	v.resize(amount);
+	if(v.size() > 6)
+		v.resize(amount);
 	return v;
 }
