@@ -6,5 +6,6 @@ public:
 	Application();
 	~Application();
 	std::vector<int>AskInput(int amount);
+	bool Test(std::vector<int>);
 };
 
